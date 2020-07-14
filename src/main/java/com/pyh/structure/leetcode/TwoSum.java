@@ -18,8 +18,8 @@ import java.util.Map;
 public class TwoSum {
 
     public static void main(String[] args) {
-        int[] nums = {2,7,11,15};
-        int target = 9;
+        int[] nums = {5,5,11,15};
+        int target = 10;
         System.out.println(Arrays.toString(twoSum(nums, target)));
     }
 
@@ -31,6 +31,8 @@ public class TwoSum {
         for(int i=0;i<nums.length;i++) {
             numsMap.put(nums[i], i);
         }
+        // 假定的是每种输入只对应一种答案，如果元素重复了，那么numsMap中下标比较大的会覆盖掉下标小的元素
+        // 所以下述的for循环只能从左开始循环
         for(int i=0;i<nums.length;i++) {
             // 每个元素只能用一次
             if(null != numsMap.get(target-nums[i]) && i!=numsMap.get(target-nums[i])) {
