@@ -1,5 +1,7 @@
 package com.pyh.structure.leetcode;
 
+import com.pyh.structure.Sorts;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +18,12 @@ public class NNum {
     public static void main(String[] args) {
         int[] a = {-4,-1,-1,0,1,1,2};
         NNum nNum = new NNum();
-        System.out.println(nNum.nNum(a, 0, 3, 0));
+        System.out.println(nNum.getNNum(a, 0, 3));
     }
 
-    public List<List<Integer>> getNNum(int[] a) {
-
-        return null;
+    public List<List<Integer>> getNNum(int[] a, int nsum, int n) {
+        Sorts.quickSort(a);
+        return nNum(a, nsum, n, 0);
     }
 
     /**
@@ -36,6 +38,9 @@ public class NNum {
      */
     public List<List<Integer>> nNum(int[] a, int nsum, int n, int begin) {
         List<List<Integer>> result = new ArrayList<>();
+        if(n<2 || a.length<n) {
+            return result; // 求和的数组长度大于或等于所求元素n个数；n>=2
+        }
         if(n > 2) {
             // 如果求解的元组个数要求大于2，则递归求解,并组装结果
             for(int i=begin;i<a.length-2;i++) {
@@ -51,26 +56,104 @@ public class NNum {
                     i++;
                 }
             }
-
         } else {
             // 从begin开始的数组中查找两个数之和等于nsum
-            Map<Integer, Integer> aMap = new HashMap<>();
-            int end = a.length;
-            while(begin<a.length) {
-                int a1=a[begin];
-                if(aMap.containsKey(nsum-a1)) {
-                    List<Integer> list = new ArrayList<>();
-                    list.add(nsum-a1); // 因为在外层while循环中aMap是先判断是否存在nsum-a1的元素，如果存在，那么nsum-a1元素肯定是之前的循环中添加的元素，所以nsum-a1肯定小于或者等于a[begin]
-                    list.add(a1);
-                    result.add(list);
-                    aMap.put(a[begin], begin++);
-                    // 使用过该元素之后，可以将后续重复的元素跳过
-                    while(begin<a.length && a1==a[begin]) {
-                        begin++;
-                    }
+            int start = begin;
+            int end = a.length-1;
+            while(start<end) {
+                int left = a[start];
+                int right = a[end];
+                int sum = a[start]+a[end];
+                if(sum<nsum) {
+                    start++;
+                    // 去掉重复的元素
+                    while(start<end && a[start]==left) start++;
+                } else if(sum>nsum) {
+                    end--;
+                    // 去掉重复的元素
+                    while(start<end && a[end]==right) end--;
                 } else {
-                    aMap.put(a[begin], begin++);
+                    // a1+a2=nsum
+                    List<Integer> list = new ArrayList<>();
+                    list.add(a[start]);
+                    list.add(a[end]);
+                    result.add(list);
+                    // 去掉重复的元素
+                    while(start<end && a[start]==left) start++;
+                    while(start<end && a[end]==right) end--;
                 }
+            }
+        }
+
+        return result;
+    }
+
+
+    /**
+     * 使用双指针的方式计算两数之和s=a+b
+     * @param a
+     * @param nsum
+     * @param n
+     * @param begin
+     * @return
+     */
+    private List<List<Integer>> twoNum(int[] a, int nsum, int n, int begin) {
+        List<List<Integer>> result = new ArrayList<>();
+        int start = begin;
+        int end = a.length-1;
+        while(start<end) {
+            int left = a[start];
+            int right = a[end];
+            int sum = a[start]+a[end];
+            if(sum<nsum) {
+                start++;
+                // 去掉重复的元素
+                while(start<end && a[start]==left) start++;
+            } else if(sum>nsum) {
+                end--;
+                // 去掉重复的元素
+                while(start<end && a[end]==right) end--;
+            } else {
+                // a1+a2=nsum
+                List<Integer> list = new ArrayList<>();
+                list.add(a[start]);
+                list.add(a[end]);
+                result.add(list);
+                // 去掉重复的元素
+                while(start<end && a[start]==left) start++;
+                while(start<end && a[end]==right) end--;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 使用map的方式计算两数之和，s=a+b
+     * @param a
+     * @param nsum
+     * @param n
+     * @param begin
+     * @return
+     */
+    private List<List<Integer>> spTwoNum(int[] a, int nsum, int n, int begin) {
+        List<List<Integer>> result = new ArrayList<>();
+        Map<Integer, Integer> aMap = new HashMap<>();
+        int end = a.length;
+        while(begin<a.length) {
+            int a1=a[begin];
+            if(aMap.containsKey(nsum-a1)) {
+                List<Integer> list = new ArrayList<>();
+                list.add(nsum-a1); // 因为在外层while循环中aMap是先判断是否存在nsum-a1的元素，如果存在，那么nsum-a1元素肯定是之前的循环中添加的元素，所以nsum-a1肯定小于或者等于a[begin]
+                list.add(a1);
+                result.add(list);
+                aMap.put(a[begin], begin++);
+                // 使用过该元素之后，可以将后续重复的元素跳过
+                while(begin<a.length && a1==a[begin]) {
+                    begin++;
+                }
+            } else {
+                aMap.put(a[begin], begin++);
             }
         }
 
