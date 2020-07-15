@@ -16,9 +16,9 @@ import java.util.Map;
 public class NNum {
 
     public static void main(String[] args) {
-        int[] a = {-4,-1,-1,0,1,1,2};
+        int[] a = {-1,0,1,2,-1,-4};
         NNum nNum = new NNum();
-        System.out.println(nNum.getNNum(a, 0, 3));
+        System.out.println(nNum.getNNum(a, -1, 4));
     }
 
     public List<List<Integer>> getNNum(int[] a, int nsum, int n) {
@@ -52,12 +52,12 @@ public class NNum {
                     }
                 }
                 // 重复的元素仅计算一次即可
-                while(a[i]==a[i+1]) {
+                while(i<a.length-1 && a[i]==a[i+1]) {
                     i++;
                 }
             }
         } else {
-            // 从begin开始的数组中查找两个数之和等于nsum
+            // 从begin开始的数组中查找两个数之和等于nsum，双指针方式
             int start = begin;
             int end = a.length-1;
             while(start<end) {
