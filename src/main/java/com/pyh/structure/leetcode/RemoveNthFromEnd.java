@@ -59,6 +59,7 @@ public class RemoveNthFromEnd {
      * @return
      */
     public ListNode removeNthFromEndGF(ListNode head, int n) {
+        // 隐藏节点的加入简直是太棒了！
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode first = dummy;
