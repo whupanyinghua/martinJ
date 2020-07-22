@@ -32,7 +32,7 @@ public class Sorts {
     }
 
     private static void par(int[] a, int low, int high) {
-        if(low==high)
+        if(low>=high)
             return ;
 
         int start = low;
