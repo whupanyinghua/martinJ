@@ -16,6 +16,7 @@ package com.pyh.structure.leetcode;
  *
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof
+ * https://leetcode-cn.com/problems/maximum-subarray/
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
  * @author panyinghua 2020-7-22 11:22
