@@ -72,4 +72,8 @@ public class JBlockingQueue {
         }
     }
 
+    public int size() {
+        return list.size();
+    }
+
 }
