@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 类MDLock的实现描述：基于redis、lua脚本的分布式锁
+ * 锁删除里边带有key、value是在校验的时候，需要验证当前key存储的value是否是之前锁定的时候设置的值
+ * 防止redis上边注册的key过期之后删掉其他线程的锁
+ * 一般建议每次去锁的时候，value的值设置成随机的
  *
  * @author panyinghua 2020-7-31 12:16
  */
