@@ -9,6 +9,8 @@ package com.pyh.structure.leetcode;
  * 说明: 叶子节点是指没有子节点的节点。
  *
  * https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+ * https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
+ * 两个题目是一样的
  *
  * @author panyinghua 2020-7-28 10:55
  */
