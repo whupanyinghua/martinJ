@@ -7,8 +7,8 @@ package com.pyh.structure.leetcode;
  */
 public class TreeNode {
     public int value; // 节点的值
-    public TreeNode leftNode; // 左子节点
-    public TreeNode rightNode; // 右子节点
+    public TreeNode left; // 左子节点
+    public TreeNode right; // 右子节点
 
     public TreeNode(int value) {
         this.value = value;

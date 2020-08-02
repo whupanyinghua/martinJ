@@ -19,6 +19,6 @@ public class MaxDepth {
     public int maxDepth(TreeNode root) {
         if(null == root) return 0; // 若当前节点为空，则高度是0
         // 递归左子树的高度、右子树的高度，返回中间较大的值然后+1即为当前树的最大高度
-        return Math.max(maxDepth(root.leftNode), maxDepth(root.rightNode))+1;
+        return Math.max(maxDepth(root.left), maxDepth(root.right))+1;
     }
 }

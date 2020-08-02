@@ -82,7 +82,7 @@ public class BTree {
             // 根据前序遍历规则，则此时左子树的根节点为 prnPreIndex+1
             int leftRootNodePreIndex = prnPreIndex+1;
             TreeNode leftTreeNode = preOrders[leftRootNodePreIndex];
-            parentRootNode.leftNode = leftTreeNode;
+            parentRootNode.left = leftTreeNode;
             int leftTreeNodeInIndex = inOrderMap.get(leftTreeNode);
             buildTree(preOrders, inOrders, leftTreeNode, leftRootNodePreIndex, leftTreeNodeInIndex,
                     leftTreeBeginIndex, leftTreeNodeInIndex-1,
@@ -96,7 +96,7 @@ public class BTree {
             // 根据前序遍历规则，此时右子树的跟节点为 父根节点的前序位置+左子树的长度+1 = prnPreIndex+leftTree.length+1
             int rightRootNodePreIndex = prnPreIndex+(leftTreeEndIndex-leftTreeBeginIndex+1)+1;
             TreeNode rightTreeNode = preOrders[rightRootNodePreIndex];
-            parentRootNode.rightNode = rightTreeNode;
+            parentRootNode.right = rightTreeNode;
             int rightTreeNodeInIndex = inOrderMap.get(rightTreeNode);
             buildTree(preOrders, inOrders, rightTreeNode, rightRootNodePreIndex, rightTreeNodeInIndex,
                     rightTreeBeginIndex, rightTreeNodeInIndex-1,
@@ -130,7 +130,7 @@ public class BTree {
         if(leftTreeEndIndex>=leftTreeBeginIndex) {
             // 根据前序遍历规则，则此时左子树的根节点为 prnPreIndex+1
             TreeNode leftTreeNode = preOrders[prnPreIndex+1];
-            curRootNode.leftNode = leftTreeNode;
+            curRootNode.left = leftTreeNode;
             int leftTreeNodeInIndex = inOrderMap.get(leftTreeNode);
             buildTreeNew(preOrders, inOrders,
                     prnPreIndex+1, leftTreeNodeInIndex,
@@ -145,7 +145,7 @@ public class BTree {
             // 根据前序遍历规则，此时右子树的跟节点为 父根节点的前序位置+左子树的长度+1 = prnPreIndex+leftTree.length+1
             int rightRootNodePreIndex = prnPreIndex+(leftTreeEndIndex-leftTreeBeginIndex+1)+1;
             TreeNode rightTreeNode = preOrders[rightRootNodePreIndex];
-            curRootNode.rightNode = rightTreeNode;
+            curRootNode.right = rightTreeNode;
             int rightTreeNodeInIndex = inOrderMap.get(rightTreeNode);
             buildTreeNew(preOrders, inOrders,
                     rightRootNodePreIndex, rightTreeNodeInIndex,
