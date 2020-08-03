@@ -1,4 +1,4 @@
-package com.pyh;
+package com.pyh.collection;
 
 /**
  * 类JLinkedList的实现描述：非线程安全版本

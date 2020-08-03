@@ -7,6 +7,14 @@ public class OddEvenThread {
     static volatile int num = 1;
 
     public static void main(String[] args) {
+        //printOddEven();
+        printOddEven2();
+    }
+
+    /**
+     * 使用Object的wait、notify方法实现两个线程交替打印奇数、偶数
+     */
+    public static void printOddEven() {
         int maxNum = 100;// 只输出100以内的数字
         Object lock = new Object();
 
@@ -45,4 +53,40 @@ public class OddEvenThread {
         evenThread.start();
         oddThread.start();
     }
+
+    /**
+     * 使用volatile 开关变量实现两个线程交替打印奇数、偶数
+     */
+    public static void printOddEven2() {
+        int maxNum = 100;// 只输出100以内的数字
+        Thread t1 = new Thread(() -> {
+            int i=1;
+            while(true && i<maxNum) {
+                while (flag) {
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+                    i = i + 2;
+                    flag = false;
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            int i=2;
+            while(true && i<=maxNum) {
+                while (!flag) {
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+                    i = i + 2;
+                    flag = true;
+                }
+            }
+        });
+
+        t1.setName("奇数线程");
+        t2.setName("偶数线程");
+
+        t1.start();
+        t2.start();
+    }
+
+    static volatile boolean flag = true;
 }

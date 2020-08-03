@@ -1,6 +1,6 @@
 package com.pyh.test.collection;
 
-import com.pyh.JBlockingQueue;
+import com.pyh.collection.JBlockingQueue;
 
 /**
  * 类JBlockingQueueTest的实现描述：

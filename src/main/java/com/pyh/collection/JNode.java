@@ -1,4 +1,4 @@
-package com.pyh;
+package com.pyh.collection;
 
 /**
  * 类JNode的实现描述：列表节点

@@ -1,4 +1,4 @@
-package com.pyh;
+package com.pyh.collection;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
