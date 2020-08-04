@@ -80,12 +80,17 @@ public class MinWindow {
 
                 // 当前将要移出窗口的字符
                 char lc = s.charAt(left);
-                if(smap.containsKey(lc)) {
-                    if(smap.get(lc).intValue() == tmap.get(lc).intValue()) {
+                if(tmap.containsKey(lc)) {
+                    int lcn = smap.get(lc).intValue();
+                    if(lcn == tmap.get(lc).intValue()) {
                         // 当前字符移出之后，不再满足条件，此处需要注意的是，如果该字符串存在多个，smap中存储的数值是比tmap中的大，所以只能在等于的时候进行一次validSize--操作即可
                         validSize--;
                     }
-                    smap.put(lc, smap.getOrDefault(lc,0)-1);
+                    if(lcn==1) {
+                        smap.remove(lc);
+                    } else {
+                        smap.put(lc, lcn-1);
+                    }
                 }
                 left++;// 窗口左边界右移
             }

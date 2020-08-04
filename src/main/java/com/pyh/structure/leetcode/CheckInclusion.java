@@ -60,10 +60,15 @@ public class CheckInclusion {
             }
 
             while(valid==s1Size && left<right) {
-                char cl = s2.charAt(left);
-                if(s2Map.get(cl).intValue()>s1Map.get(cl).intValue()) {
+                char lc = s2.charAt(left);
+                int lcn = s2Map.get(lc).intValue();
+                if(lcn>s1Map.get(lc).intValue()) {
                     left++;
-                    s2Map.put(cl,s2Map.get(cl).intValue()-1);
+                    if(lcn==1) {
+                        s2Map.remove(lc);
+                    } else {
+                        s2Map.put(lc, lcn - 1);
+                    }
                 } else {
                     break;
                 }
