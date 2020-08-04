@@ -57,7 +57,7 @@ public class LengthOfLongestSubstring {
                     maxRes = currentRes;
                 }
             } else {
-                // rc字符重复了，此时可以修正left&right的位置
+                // rc字符重复了，
                 smap.put(rc, smap.get(rc)+1);
             }
 
