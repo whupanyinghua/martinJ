@@ -14,6 +14,11 @@ public class IntReverse {
         System.out.println(new IntReverse().reverse(a));
     }
 
+    /**
+     * 其实不需要特别区分正数负数，取模，除法都可以正常区分正数负数
+     * @param x
+     * @return
+     */
     public int reverse(int x) {
         int target = 0;
         while(x!=0) {
