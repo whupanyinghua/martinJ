@@ -31,11 +31,13 @@ public class ThreadTest {
                             lock.notify();
                         } catch (InterruptedException e) {
                             // 中断暂时不管，这里无需处理中断的情况
+                            // 方便线程外部通过中断来结束线程
+                            break;
                         }
                     }
                 }
             });
-            t.setDaemon(true);
+            //t.setDaemon(true);
             threads[i]=t;
             t.start();
         }
@@ -59,6 +61,13 @@ public class ThreadTest {
                     // 中断暂时不管，这里无需处理中断的情况
                 }
             }
+        }
+
+        // 停止数字打印线程
+        exit = true;
+        for(Thread thread: threads) {
+            // 通过中断来结束数字打印
+            thread.interrupt();
         }
 
     }
