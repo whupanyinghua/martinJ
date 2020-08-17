@@ -1,8 +1,8 @@
 package com.pyh.collection;
 
 /**
- * 类JLinkedList的实现描述：非线程安全版本
- *
+ * 类JLinkedList的实现描述：普通单向链表，非线程安全版本
+ * 双向链表见 JDLinkedList
  * @author panyinghua 2020-7-29 22:36
  */
 public class JLinkedList {
