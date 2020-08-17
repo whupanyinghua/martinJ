@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 类JLRU的实现描述：基于JDLinkedList、MAP的LRU算法
- *
+ * LRU:least recently used
  * @author panyinghua 2020-8-17 11:07
  */
 public class JLRUCache {
@@ -56,7 +56,7 @@ public class JLRUCache {
      * @param key
      * @param value
      */
-    public void add(int key, int value) {
+    public void put(int key, int value) {
         if(map.containsKey(key)) {
             // 如果本身对应的key在缓存中，两种做法：1.先删除，再添加；2.直接替换。此处无需判断缓存的大小
             // 1.删除对应的key
