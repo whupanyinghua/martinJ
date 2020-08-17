@@ -20,6 +20,14 @@ public class JDNode {
      */
     public JDNode next;
 
+    public JDNode(Integer value) {
+        this(value, null, null);
+    }
+
+    public JDNode(Integer key, Integer value) {
+        this(key, value, null, null);
+    }
+
     public JDNode(Integer value, JDNode prev, JDNode next) {
         this.value = value;
         this.prev = prev;

@@ -102,7 +102,7 @@ public class JLRUCache {
      * @param value
      */
     private void addNodeRecently(int key, int value) {
-        JDNode node = new JDNode(key, value, null, null);
+        JDNode node = new JDNode(key, value);
         // 1.添加到链表中
         cache.addLast(node);
         // 2.添加到map中
