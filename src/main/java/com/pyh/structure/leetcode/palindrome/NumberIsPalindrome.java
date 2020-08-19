@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.palindrome;
 
 /**
  * 类NumberIsPalindrome的实现描述：
