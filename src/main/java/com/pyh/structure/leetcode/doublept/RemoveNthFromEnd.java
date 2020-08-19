@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.doublept;
 
 /**
  * 类RemoveNthFromEnd的实现描述：

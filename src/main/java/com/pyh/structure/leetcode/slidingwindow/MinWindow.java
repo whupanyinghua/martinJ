@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.slidingwindow;
 
 import java.util.HashMap;
 import java.util.Map;

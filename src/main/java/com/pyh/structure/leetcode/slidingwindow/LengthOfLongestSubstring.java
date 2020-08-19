@@ -1,6 +1,5 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.slidingwindow;
 
-import javax.print.attribute.HashAttributeSet;
 import java.util.HashMap;
 import java.util.Map;
 

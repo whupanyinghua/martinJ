@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.dp;
 
 /**
  * 类CoinChangeTwo的实现描述：

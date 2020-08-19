@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.doublept;
 
 import com.pyh.structure.Sorts;
 
