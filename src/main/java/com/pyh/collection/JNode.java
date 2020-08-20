@@ -6,8 +6,8 @@ package com.pyh.collection;
  * @author panyinghua 2020-7-31 15:32
  */
 public class JNode {
-    int value;
-    JNode next;
+    public int value;
+    public JNode next;
 
     public JNode(int value, JNode next) {
         this.value = value;

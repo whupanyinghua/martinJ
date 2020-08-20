@@ -1,5 +1,7 @@
 package com.pyh.structure.leetcode;
 
+import com.pyh.collection.JNode;
+
 import java.util.Arrays;
 
 /**
@@ -70,6 +72,7 @@ public class RemoveDuplicates {
 
     /**
      * 元素最大允许重复元素出现1次
+     * 这个思路很其实就是快慢指针思路的变种
      * @param nums
      * @return
      */
@@ -91,4 +94,65 @@ public class RemoveDuplicates {
         }
         return i+1;
     }
+
+    public int removeDuplicatesList(JNode head) {
+        if(null == head) return 0;
+        if(null == head.next) return 1;
+
+
+        // 默认首个元素是1
+        int res = 1;
+        JNode first = head;
+        JNode second = head.next;
+        while(null != second) {
+            if(first.value != second.value) {
+                first.next = second;
+                first = first.next;
+                // 只要有一个交换，那么结果长度+1
+                res++;
+            }
+            second = second.next;
+        }
+
+        return res;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/
+     * @param head
+     * @return
+     */
+    public JNode removeDuplicatesList2(JNode head) {
+        if(null == head) return head;
+        if(null == head.next) return head;
+
+        JNode dummy = new JNode(0, null);
+        dummy.next = head;
+
+        JNode cur = dummy;
+        JNode first = head;
+        JNode second = first.next;
+        int step = 0;
+        while(null != second) {
+            if(first.value != second.value) {
+                if(step==0) {
+                    cur.next = first;
+                    cur = cur.next;
+                }
+                first = second;
+                step = 0;
+            } else {
+                step++;
+            }
+            second = second.next;
+        }
+        if(step==0) {
+            cur.next = first;
+            cur = cur.next;
+        }
+        cur.next = null;
+
+        return dummy.next;
+    }
+
 }
