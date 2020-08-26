@@ -33,11 +33,22 @@ public class CanJump {
 
     public static void main(String[] args) {
         CanJump jump = new CanJump();
-        int[] a = {2,3,1,1,0,4};
+        /*int[] a = {2,3,1,1,0,4};
         //System.out.println("数组："+ Arrays.toString(a)+"的跳到最后一个元素需要最短步数是："+jump.canJump2WithMemo(a));
         int[] b = {2,3,1,1,4};
         System.out.println("数组："+ Arrays.toString(b)+"的跳到最后一个元素需要最短步数是："+jump.canJump2WithMemo(b));
-        System.out.println("end");
+        System.out.println("end");*/
+
+        int[] nums = new int[25000];
+        int j = 1;
+        for(int i=0;i<25000;i++) {
+            nums[i] = j++;
+        }
+        long begin = System.currentTimeMillis();
+        System.out.println("跳到最后一个元素需要最短步数是："+jump.canJump2WithMemo(nums));
+        long end = System.currentTimeMillis();
+        System.out.println("总共花费:"+(end-begin)+" ms");
+
     }
 
     /**
@@ -123,16 +134,19 @@ public class CanJump {
      * @return
      */
     private int stepWithMemo(int[] nums, int begin, int end) {
-        if(begin==end) return 0;
+        if(begin>=end) return 0;
         if(nums[begin]==0) return -1;
 
         // 1.先尝试从备忘录中获取结果
         Integer memoVal = memo.get(begin);
         if(null != memoVal) return memoVal;
 
-        // 初始化为最大长度，如果这个值没有被更新过，那么证明没有找到更小的路径，也就是没有路径
+        // 初始化为最大长度+1，如果这个值没有被更新过，那么证明没有找到更小的路径，也就是没有路径
         int minStep = end-begin+1;
-        for(int i=1;i<=nums[begin];i++) {
+        for(int i=nums[begin];i>=1;i--) {
+            if(i+begin>end) {
+                continue;
+            }
             int nextStep = stepWithMemo(nums, begin+i, end);
             if(nextStep==-1) {
                 // 表示当前往前跳i步之后没法抵达目的地，则不用加到结果集的更新中
