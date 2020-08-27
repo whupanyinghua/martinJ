@@ -36,6 +36,7 @@ public class CoinChange {
      * 第一种思路：
      * dp(i,j) 表示由前i种硬币组成j的最小硬币个数，那么考虑子问题是否是独立问题
      * dp(i,j) = min(dp(i-1,j)，dp(i-1,j-nums[0])+1,dp(i-1,j-nums[1])+1,...,dp(i-1,j-nums[i-1])+1),其中i属于硬币种类数组
+     * 注意，这里还隐藏了一个条件，就是min条件的计算中，要求j-nums[i-1]>=0，也就需要进入min计算，要求前i-1中组装出来的金额与最终金额j相比必须能够容纳下nums[i]
      * 观察上述方程，元素只跟i-1上一层计算相关，因此可以优化成一维数组
      * dp[j] = min(dp[j],dp(j-nums[0])+1,dp(j-nums[1])+1,...,dp(j-nums[i-1])+1)
      * 因为j-nums[i-1]<j，因此可以从左往右遍历
@@ -48,7 +49,8 @@ public class CoinChange {
         for(int i=1;i<dp.length;i++) {
             for(int coin: coins) {
                 if(i>=coin) {
-                    dp[i] = Math.min(dp[i], dp[i-coin]+1); // 这里采取的是min运算，那么在初始化dp数组的时候，就需要将dp初始化成比较大的数字，预防影响到dp min操作结果
+                    // 这里采取的是min运算，那么在初始化dp数组的时候，就需要将dp初始化成比较大的数字，预防影响到dp min操作结果
+                    dp[i] = Math.min(dp[i], dp[i-coin]+1);
                 }
             }
         }

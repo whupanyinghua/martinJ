@@ -49,6 +49,12 @@ public class CanJump {
         long end = System.currentTimeMillis();
         System.out.println("总共花费:"+(end-begin)+" ms");
 
+        jump.memo.clear();
+        begin = System.currentTimeMillis();
+        System.out.println("跳到最后一个元素需要最短步数是："+jump.jumpx(nums));
+        end = System.currentTimeMillis();
+        System.out.println("总共花费:"+(end-begin)+" ms");
+
     }
 
     /**
@@ -164,6 +170,73 @@ public class CanJump {
         memo.put(begin, minStep);
 
         return minStep;
+    }
+
+
+    /**
+     * 查找跳到最后一个位置的最近路径长度，如果没有则返回-1，使用备忘录
+     * @param nums
+     * @return
+     */
+    public int canJump2WithMemoReverse(int[] nums) {
+        int len = nums.length;
+        // 暴力破解，带有备忘录的方式
+        return stepWithMemoReverse(nums, 0, len-1);
+    }
+
+    private int stepWithMemoReverse(int[] nums, int begin, int end) {
+        if(begin>=end) return 0;
+        if(nums[begin]==0) return -1;
+
+        // 1.先尝试从备忘录中获取结果
+        Integer memoVal = memo.get(end);
+        if(null != memoVal) return memoVal;
+
+        // 初始化为最大长度+1，如果这个值没有被更新过，那么证明没有找到更小的路径，也就是没有路径
+        int minStep = end-begin+1;
+        int j = end-1;
+        while(j>=begin) {
+            if(nums[j]>=end-j) {
+                // 表示从j位置可以跳到end位置
+                int preStep = stepWithMemoReverse(nums, begin, j);
+                if(preStep != -1) {
+                    minStep = min(minStep, preStep + 1);
+                }
+            }
+            j--;
+        }
+
+        if(minStep==end-begin+1) {
+            minStep = -1;
+        }
+
+        // 将计算结果放到备忘录memo中
+        memo.put(end, minStep);
+
+        return minStep;
+    }
+
+    public int jumpx(int[] nums) {
+        int len = nums.length;
+        if(len==0) return 0;
+        if(len==1) return 0;
+
+        // fn[i]表示从位置0跳到位置i所需的最小步骤,则可以推导出 fn[i] = min(f[j],fn[k]...,fn[l])+1,其中min函数里边的fn[j]满足num[j]+j>=i
+        int[] fn = new int[len];
+        fn[0]=0;
+        fn[1]=nums[0]>0?1:0;
+
+        for(int i=2;i<len;i++) {
+            int minFn = i;
+            for(int j=0;j<i;j++) {
+                if(j+nums[j]>=i) {
+                    minFn = min(minFn,fn[j]+1);
+                }
+            }
+            fn[i]=minFn;
+        }
+
+        return fn[len-1];
     }
 
 
