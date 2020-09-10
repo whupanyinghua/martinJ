@@ -55,6 +55,11 @@ public class CanJump {
         end = System.currentTimeMillis();
         System.out.println("总共花费:"+(end-begin)+" ms");
 
+        begin = System.currentTimeMillis();
+        System.out.println("跳到最后一个元素需要最短步数是："+jump.jumpWithLessStep(nums));
+        end = System.currentTimeMillis();
+        System.out.println("总共花费:"+(end-begin)+" ms");
+
     }
 
     /**
@@ -151,7 +156,9 @@ public class CanJump {
         int minStep = end-begin+1;
         for(int i=nums[begin];i>=1;i--) {
             if(i+begin>end) {
-                continue;
+                // 表示从begin位置可以一步直达end位置
+                minStep = 1;
+                break;
             }
             int nextStep = stepWithMemo(nums, begin+i, end);
             if(nextStep==-1) {
@@ -237,6 +244,30 @@ public class CanJump {
         }
 
         return fn[len-1];
+    }
+
+    /**
+     * 可以直接通贪心算法求解
+     * @param nums
+     * @return
+     */
+    public int jumpWithLessStep(int[] nums) {
+        int step=0;
+        int end=0;
+        int far=0;
+        // 循环体i<只取length-1，是因为如果i为位置在length-1已经是最后抵达的位置了，如果刚好far的位置与length-1相等，那么for循环里
+        // 的if(i==end)会导致获取到的结果比实际结果大1
+        for(int i=0;i<nums.length-1;i++) {
+            // 求解下一步可以跳到的最远距离
+            far = max(i+nums[i], far);
+            // 从i~end这个位置只需要一步，在i==end这里更新下步数以及end的值
+            if(i==end) {
+                step++;
+                end=far;
+            }
+        }
+
+        return step;
     }
 
 
