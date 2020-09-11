@@ -13,4 +13,19 @@ public class JNode {
         this.value = value;
         this.next = next;
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        builder.append(value);
+        JNode node = this.next;
+        while(null != node) {
+            builder.append(",").append(node.value);
+            node = node.next;
+        }
+        builder.append("]");
+        return builder.toString();
+    }
 }
