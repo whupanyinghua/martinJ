@@ -93,8 +93,9 @@ public class JLFUCache {
         // 1.添加新元素
         JDNode node = new JDNode(key, value);
         keyToValMap.put(key, node);
-        freqToNodeMap.putIfAbsent(1, new LinkedHashSet<>());
-        freqToNodeMap.get(1).add(node);
+        //freqToNodeMap.putIfAbsent(1, new LinkedHashSet<>());
+        //freqToNodeMap.get(1).add(node);
+        freqToNodeMap.computeIfAbsent(1, v -> new LinkedHashSet<>()).add(node);
         keyToFreqMap.put(key, 1);
         // 2.添加新元素之后，最少访问频率肯定是1
         this.minFreq = 1;
@@ -135,8 +136,9 @@ public class JLFUCache {
         LinkedHashSet<JDNode> freqSet = freqToNodeMap.get(freq);
         freqSet.remove(node);
         // 2.将当前元素加到下一个使用频率set中
-        freqToNodeMap.putIfAbsent(freq+1, new LinkedHashSet<>());
-        freqToNodeMap.get(freq+1).add(node);
+        //freqToNodeMap.putIfAbsent(freq+1, new LinkedHashSet<>());
+        //freqToNodeMap.get(freq+1).add(node);
+        freqToNodeMap.computeIfAbsent(freq+1, v->new LinkedHashSet<>()).add(node);
         // 3.处理上一个频率的set列表
         if(freqSet.isEmpty()) {
             // 元素挪走之后，频率set为空，则从freqToNodeMap中删除
