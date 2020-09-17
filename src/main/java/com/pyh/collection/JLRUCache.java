@@ -103,10 +103,7 @@ public class JLRUCache {
      */
     private void addNodeRecently(int key, int value) {
         JDNode node = new JDNode(key, value);
-        // 1.添加到链表中
-        cache.addLast(node);
-        // 2.添加到map中
-        map.put(key, node);
+        addNodeRecently(node);
     }
 
     private void addNodeRecently(JDNode node) {
