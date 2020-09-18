@@ -42,25 +42,23 @@ public class MedianOfDynamicArrays {
             // 注意，因为添加元素会破坏small、large的元素约定，所以在添加元素的时候需要特殊处理下
             // 往small中添加元素num的时候，需要num与large中最小的元素进行比较，如果num<=min(large)，那么把num加入到small中
             // 否则，将min(large)从large中取出并且加入small，然后将num加入到large中
-            //int minLarge = large.peek(); // 当small与large中都没有元素的时候，large.peek()会异常，因此if价格判断small.size()==0
+            //int minOfLarge = large.peek(); // 当small与large中都没有元素的时候，large.peek()会异常，因此if价格判断small.size()==0
             if(small.size()==0 || num<=large.peek()) {
                 small.offer(num);
             } else {
-                large.poll();
+                small.offer(large.poll());
                 large.offer(num);
-                small.offer(large.peek());
             }
         } else {
             // small堆中的元素个数大于large堆，则往large堆中添加元素，处理规则与往small堆中添加元素类似
             // 往large中添加元素num的时候，需要num与small中最大的元素进行比较，如果num>max(small)，那么把num加入到large中
             // 否则，将max(small)从small中取出并且加入large，然后将num加入到small中
-            int maxSmall = small.peek();
-            if(num>maxSmall) {
+            int maxOfSmall = small.peek();
+            if(num>maxOfSmall) {
                 large.offer(num);
             } else {
-                small.poll();
+                large.offer(small.poll());
                 small.offer(num);
-                large.offer(maxSmall);
             }
         }
 
