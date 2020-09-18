@@ -18,7 +18,7 @@ public class FindErrorNums {
             int index = Math.abs(nums[i])-1;
             if(nums[index]<0) {
                 // 如果检测到nums[index]这个位置已经是负数，那么表示当前索引index对应的元素是重复访问，那么nums[i]就是重复元素
-                dup = nums[i];
+                dup = Math.abs(nums[i]);
             } else {
                 // 首次访问，将对应的元素置为对应的负数
                 nums[index] *= -1;
