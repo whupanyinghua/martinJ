@@ -41,6 +41,12 @@ import java.util.Stack;
  */
 public class IsValid {
 
+
+    /**
+     * 判断字符串是否一个有效的包含()/[]/{}的字符串
+     * @param s
+     * @return
+     */
     public boolean isValid(String s) {
         if(null == s) return false;
         int length = s.length();
@@ -74,5 +80,85 @@ public class IsValid {
         }
 
         return true;
+    }
+
+    /**
+     * 已知一个字符串s，其中只包含(|),如何插入最少的(|)使之变成合法的字符串，也就是左括号右括号必须一一成对出现
+     * 如 "())(" 需要加入一个左括号一个右括号才能标称合法的字符串 "(())()"
+     * @param s
+     * @return
+     */
+    public int fill(String s) {
+        // 左括号的需求
+        int leftNeed = 0;
+        // 右括号的需求
+        int rightNeed = 0;
+
+        for(char c : s.toCharArray()) {
+            if(c=='(') {
+                // 当遇到左括号的时候，意味着需要一个右括号
+                rightNeed += 1;
+            }
+            if(c==')') {
+                // 当遇到右括号的时候，把rightNeed进行-1操作
+                rightNeed -= 1;
+                // 如果rightNeed=-1的时候意味着什么
+                // 表明此时右括号多了一个，需要插入一个左括号
+                if(rightNeed == -1) {
+                    leftNeed += 1;
+                    // 插入左括号之后，把右括号的需求变为0
+                    rightNeed = 0;
+                }
+            }
+        }
+
+        // 左括号的需求+右括号的需求就是最后的结果
+        return leftNeed+rightNeed;
+    }
+
+    /**
+     * 相对于fill1，这里的字符串合法的定义是，一个左括号对应两个右括号
+     * (()(( )))) ())
+     * (( ))))))) ())
+     * @param s
+     * @return
+     */
+    public int fill2(String s) {
+        // 左括号的需求
+        int leftNeed = 0;
+        // 右括号的需求
+        int rightNeed = 0;
+        // 计算过程中插入左括号或者右括号的计数
+        int res = 0;
+
+        for(char c : s.toCharArray()) {
+            if(c=='(') {
+                // 当遇到左括号的时候，意味着需要两个个右括号
+                rightNeed += 2;
+
+                // 难点:
+                // rightNeed是奇数表示需要在本次的左括号之前，肯定是需要补充一个右括号，来把之前的某个左括号进行匹配
+                if(rightNeed%2==1) {
+                    // 插入右括号
+                    res++;
+                    // 此处需要满足一个左括号两个右括号的规则，需要将右括号的需求-1
+                    rightNeed -= 1;
+                }
+            }
+            if(c==')') {
+                // 当遇到右括号的时候，把rightNeed进行-1操作
+                rightNeed -= 1;
+                // 什么时候添加左括号？
+                // rightNeed=-1表示右括号太多，需要插入左括号
+                if(rightNeed==-1) {
+                    res++;
+                    // 插入一个左括号之后，因为一个左括号对应两个右括号，所以讲右括号从-1变更为1，与插入的左括号匹配
+                    rightNeed = 1;
+                }
+            }
+        }
+
+        // 左括号的需求+右括号的需求就是最后的结果
+        return res+rightNeed;
     }
 }
