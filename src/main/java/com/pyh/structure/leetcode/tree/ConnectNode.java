@@ -1,0 +1,64 @@
+package com.pyh.structure.leetcode.tree;
+
+/**
+ * 类ConnectNode的实现描述：
+ *
+ * @author panyinghua 2020-9-23 19:27
+ */
+public class ConnectNode {
+
+
+    public Node connect(Node root) {
+        // 错误思路
+        /*if(null == root || null == root.left) {
+            return null;
+        }
+
+        // 连接左子树
+        connect(root.left);
+        // 连接右子树
+        connect(root.right);
+        // 连接left与right
+        root.left.next = root.right;*/
+
+        if(null == root) {
+            return null;
+        }
+        connectNew(root.left, root.right);
+
+        return root;
+    }
+
+    /**
+     * 函数的定义是将left与right两个节点连接起来
+     * @param node1
+     * @param node2
+     * @return
+     */
+    public void connectNew(Node node1, Node node2) {
+        // base case
+        if(null == node1 || null == node2) {
+            return ;
+        }
+
+        // 连接node1与node2
+        node1.next = node2;
+        // 连接node1.left node1.right
+        connectNew(node1.left, node1.right);
+        // 连接node2.left node2.right
+        connectNew(node2.left, node2.right);
+        // 连接node1.right node2.left(跨越父节点的两个相邻节点)
+        connectNew(node1.right, node2.left);
+    }
+
+
+    public static class Node {
+        public int value;
+        public Node left;
+        public Node right;
+        public Node next;
+        public Node(int value) {
+            this.value = value;
+        }
+    }
+}
