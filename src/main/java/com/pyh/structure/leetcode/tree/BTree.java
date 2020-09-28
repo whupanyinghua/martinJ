@@ -71,7 +71,7 @@ public class BTree {
      * @param rightNodeInEndIndex 右子树的右边界
      * @param inOrderMap 中序遍历转换成的MAP，key为节点自身，value为节点在中序遍历数组中的位置
      */
-    public static void buildTree(TreeNode[] preOrders, TreeNode[] inOrders, TreeNode parentRootNode,
+    private static void buildTree(TreeNode[] preOrders, TreeNode[] inOrders, TreeNode parentRootNode,
                           int prnPreIndex, int prnInIndex,
                           int leftNodeInBeginIndex, int leftNodeInEndIndex,
                           int rightNodeInBeginIndex, int rightNodeInEndIndex,
@@ -119,7 +119,7 @@ public class BTree {
      * @param rightNodeInEndIndex 右子树的右边界
      * @param inOrderMap 中序遍历转换成的MAP，key为节点自身，value为节点在中序遍历数组中的位置
      */
-    public static void buildTreeNew(TreeNode[] preOrders, TreeNode[] inOrders,
+    private static void buildTreeNew(TreeNode[] preOrders, TreeNode[] inOrders,
                                  int prnPreIndex, int prnInIndex,
                                  int leftNodeInBeginIndex,
                                  int rightNodeInEndIndex,
