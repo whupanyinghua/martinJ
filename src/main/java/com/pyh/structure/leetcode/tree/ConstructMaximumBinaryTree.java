@@ -9,6 +9,13 @@ import com.pyh.structure.leetcode.TreeNode;
  */
 public class ConstructMaximumBinaryTree {
 
+    public static void main(String[] args) {
+        int[] n = {3,2,1,6,0,5};
+        ConstructMaximumBinaryTree tree = new ConstructMaximumBinaryTree();
+        TreeNode root = tree.constructMaximumBinaryTree(n);
+        System.out.println(root);
+    }
+
 
     public TreeNode constructMaximumBinaryTree(int[] nums) {
         if(null == nums) {
@@ -37,7 +44,7 @@ public class ConstructMaximumBinaryTree {
         // 1.先找到当前范围内最大的元素
         int index = begin;
         int maxValue = nums[begin];
-        for(int i=begin;i<end;i++) {
+        for(int i=begin;i<=end;i++) {
             if(nums[i]>maxValue) {
                 maxValue = nums[i];
                 index = i;

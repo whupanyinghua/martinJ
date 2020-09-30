@@ -6,6 +6,44 @@ import com.pyh.structure.leetcode.TreeNode;
  * 类BTreeBuilder的实现描述：提供了根据两种遍历方式来构造二叉树的思路
  * 1.根据前序遍历、中序遍历构造二叉树
  * 2、根据中序遍历、后续遍历构造二叉树
+ *
+ * 105. 从前序与中序遍历序列构造二叉树
+ * 根据一棵树的前序遍历与中序遍历构造二叉树。
+ *
+ * 注意:
+ * 你可以假设树中没有重复的元素。
+ *
+ * 例如，给出
+ *
+ * 前序遍历 preorder = [3,9,20,15,7]
+ * 中序遍历 inorder = [9,3,15,20,7]
+ * 返回如下的二叉树：
+ *
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
+ *
+ *
+ * 106. 从中序与后序遍历序列构造二叉树
+ * 根据一棵树的中序遍历与后序遍历构造二叉树。
+ *
+ * 注意:
+ * 你可以假设树中没有重复的元素。
+ *
+ * 例如，给出
+ *
+ * 中序遍历 inorder = [9,3,15,20,7]
+ * 后序遍历 postorder = [9,15,7,20,3]
+ * 返回如下的二叉树：
+ *
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
+ *
  * @author panyinghua 2020-9-28 19:00
  */
 public class BTreeBuilder {
@@ -56,7 +94,7 @@ public class BTreeBuilder {
      * @return
      */
     public TreeNode buildTree2(int[] inOrders, int[] postOrders) {
-        return buildTreeInternal2(inOrders, 0, inOrders.length, postOrders, 0, postOrders.length);
+        return buildTreeInternal2(inOrders, 0, inOrders.length-1, postOrders, 0, postOrders.length-1);
     }
 
     private TreeNode buildTreeInternal2(int[] inOrders, int inBegin, int inEnd, int[] postOrders, int postBegin, int postEnd) {
