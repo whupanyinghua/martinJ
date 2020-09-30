@@ -53,6 +53,6 @@ public class RandomizedSet {
 
     public int getRandom() {
         // 随机数对size取模作为取数的下标，达到随机获取元素的目的
-        return nums[random.nextInt()%size];
+        return nums[Math.abs(random.nextInt())%size];
     }
 }
