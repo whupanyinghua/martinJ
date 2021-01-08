@@ -2,17 +2,19 @@ package com.pyh.thread;
 
 /**
  * 两个线程交替打印奇数、偶数
+ * 输出1 2 3 4 5 ...  99 100
  */
 public class OddEvenThread {
     static volatile int num = 1;
 
     public static void main(String[] args) {
-        //printOddEven();
-        printOddEven2();
+        printOddEven();
+        // printOddEven2();
     }
 
     /**
      * 使用Object的wait、notify方法实现两个线程交替打印奇数、偶数
+     * 输出1 2 3 4 5 ...  99 100
      */
     public static void printOddEven() {
         int maxNum = 100;// 只输出100以内的数字

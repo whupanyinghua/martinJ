@@ -7,7 +7,7 @@ package com.pyh.structure;
  */
 public class PowOfNumber {
     public static void main(String[] args) {
-        int testNumber = 1000;
+        int testNumber = 256;
 
         System.out.println(String.format("minUpPowOf-距离%d之上最近的2^N的数字是%d",testNumber, minUpPowOf(testNumber)));
         System.out.println(String.format("tableSizeFor-距离%d之上最近的2^N的数字是%d",testNumber, tableSizeFor(testNumber)));
