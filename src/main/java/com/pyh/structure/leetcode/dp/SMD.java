@@ -11,6 +11,12 @@ package com.pyh.structure.leetcode.dp;
  */
 public class SMD {
 
+    public static void main(String[] args) {
+        String s1="horse";
+        String s2="ros";
+        System.out.println("'"+s1+"' and '"+s2+"' smd is "+smd(s1,s2));
+    }
+
     public static int smd(String s1, String s2) {
         // dp[i][j] 表示的是 s1[...i-1] s2[...j-1]的最小编辑距离
         // 思考如何从子问题推导出dp[i][j]
@@ -18,7 +24,7 @@ public class SMD {
         // 假设 s1[i-1]==s2[j-1] 那么当前无需任何操作，已经符合需求，操作次数=0，直接把i j往前移动即可 dp[i][j]=dp[i-1][j-1]
         // 假设 s1[i-1]!=s2[j-1] 那么可以采取三个操作
         // 1.s1中插入一个字符匹配s2的字符，这个时候，s1的i下标i无需移动，s2的j往前移动一位，
-        // 插入的字符跟s2当前字符匹配了，那子问题dp[i][j-1]表示的是s1中前i个字符跟s2的钱j-1个字符比较，即 dp[i][j]=dp[i][j-1]+1，插入字符属于一次操作
+        // 插入的字符跟s2当前字符匹配了，那子问题dp[i][j-1]表示的是s1中前i个字符跟s2的前j-1个字符比较，即 dp[i][j]=dp[i][j-1]+1，插入字符属于一次操作
         // 2.s1中删除当前字符，这个时候，s1的i下标i往前移动一位，s2的j无需移动，
         // 子问题dp[i-1][j]是s1前i-1个字符跟s2前j个字符比较，即 dp[i][j]=dp[i-1][j]+1，删除字符属于一次操作
         // 3.s1 中替换当前字符为s2对应的字符字符，这个时候，s1的i下标i往前移动一位，s2的j往前移动一位，
