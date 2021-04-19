@@ -8,7 +8,7 @@ package com.pyh.structure.leetcode.dp;
 public class KnapsackProblem {
 
     public static void main(String[] args) {
-        System.out.println(bp01(new int[]{2, 1, 3},new int[]{4,2,3},4));
+        System.out.println(kp01(new int[]{2, 1, 3},new int[]{4,2,3},4));
     }
 
 
@@ -23,7 +23,7 @@ public class KnapsackProblem {
      * @param cap
      * @return
      */
-    public static int bp01(int[] wt, int[] val, int cap) {
+    public static int kp01(int[] wt, int[] val, int cap) {
         // dp[i][j]表示使用前i中物品占用空间为j的时候所能装出的最大价值
         // 子问题 dp[i-1][j-1]表示使用前i-1种物品占用空间为j-1的时候所能装出的最大价值
         // 注意，数组中下标是从0开始的，而我们这里使用的i是从1开始，所以一会儿计算重量、价值的时候数组的下标需要对应的-1操作
