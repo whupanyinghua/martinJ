@@ -11,6 +11,8 @@ public class KnapsackProblem {
         System.out.println(kp01(new int[]{2, 1, 3},new int[]{4,2,3},4));
         System.out.println(kp01_ziji(new int[]{1,5,11,5}));
         System.out.println(kp01_ziji(new int[]{1,5,11}));
+        System.out.println(kp01_ziji(new int[]{1,5,11,6}));
+        System.out.println(kp01_ziji(new int[]{1,5,11,9}));
         System.out.println(kpall(new int[]{1,2,5},5));
     }
 
