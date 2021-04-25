@@ -7,6 +7,11 @@ package com.pyh.structure.leetcode.dp;
  */
 public class MakePalindrome {
 
+    public static void main(String[] args) {
+        System.out.println(mp("abcea"));
+        System.out.println(mp("aba"));
+    }
+
     /**
      * 把字符串s变为回文字符串需要插入的最少字符数
      * @param s
