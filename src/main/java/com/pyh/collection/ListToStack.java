@@ -1,7 +1,7 @@
 package com.pyh.collection;
 
 /**
- * 类ListToStack的实现描述：@TODO
+ * 类ListToStack的实现描述：自己实现的stack
  *
  * @author panyinghua 2020-7-29 20:41
  */
