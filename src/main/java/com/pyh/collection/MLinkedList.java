@@ -69,7 +69,7 @@ public class MLinkedList<E> {
             ii--;
         }
 
-        if(item==null || ii>0) {
+        if(ii>0 || item==null) {
             throw new ArrayIndexOutOfBoundsException();
         }
 

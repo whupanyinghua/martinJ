@@ -13,6 +13,10 @@ public class MStack<E> {
     
     
     public void push(E item) {
+        if(null == item) {
+            return ;
+        }
+
         // 入栈添加到队首，这样的话出栈的时候也从队首出
         items.addFirst(item);
         count++;
@@ -21,7 +25,9 @@ public class MStack<E> {
     public E pull() {
         E item=null;
         item = items.removeFirst();
-        count--;
+        if(item != null) {
+            count--;
+        }
         return item;
     }
 
