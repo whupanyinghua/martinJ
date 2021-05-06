@@ -50,8 +50,8 @@ public class ExpressionExcutor {
         while(index<len) {
             mv = getNextNum(expression, index);
             if(null != mv) {
-                numStack.push(mv.getValue());
-                index = mv.getKey();
+                numStack.push(mv.getValue2());
+                index = mv.getValue1();
             } else {
                 // 获取到的不是数字(同时注意的是需要将index的位置往后移一位)
                 char op = expression.charAt(index++);
@@ -129,20 +129,20 @@ public class ExpressionExcutor {
     }
 
     private static class MultiValue {
-        private int key;
-        private int value;
+        private int value1;
+        private int value2;
 
-        public MultiValue(int k, int v) {
-            this.key = k;
-            this.value = v;
+        public MultiValue(int v1, int v2) {
+            this.value1 = v1;
+            this.value2 = v2;
         }
 
-        public int getKey() {
-            return key;
+        public int getValue1() {
+            return value1;
         }
 
-        public int getValue() {
-            return value;
+        public int getValue2() {
+            return value2;
         }
     }
 }
