@@ -13,9 +13,51 @@ public class Sorts {
         Random random = new Random();
         int[] a = random.ints(30, 100,1000).toArray();
         System.out.println("source:"+Arrays.toString(a));
-        quickSort(a);
+        //quickSort(a);
+        quickSortM(a);
         System.out.println("sorted:"+Arrays.toString(a));
         // quickSort(null);
+    }
+
+    private static void quickSortM(int[] a) {
+        int len = a.length;
+        quickSortInternal(a,0,len-1);
+    }
+
+    private static void quickSortInternal(int[] a, int low, int high) {
+        if(low<high) {
+            int mid = partition(a, low, high);
+            quickSortInternal(a, low, mid-1);
+            quickSortInternal(a, mid+1,high);
+        }
+    }
+
+    private static int partition(int[] a, int begin, int end) {
+        int key = a[begin];
+
+        int i=begin;
+        int j=end;
+        // 1.思考，要不要等号 (如果需要等号，while循环里边判断的都没有等号的范围)
+        // 2.思考，为什么key使用数组中最左边的值的时候，我们需要先从右边开始查找比key小的元素，不能从左边开始找比key大的元素吗？
+        while(i<j) {
+            while(i<j && a[j]>=key) {
+                j--;
+            }
+            while(i<j && a[i]<=key) {
+                i++;
+            }
+            if(i<j) {
+                swap(a, i, j);
+            }
+        }
+        //  注意在从左往右查找的时候，是找到笔key小的元素才互换，所以现在a[begin]还是key的值
+        // 此时索引i的对应值有两种情况
+        // 1.索引i的对应值是一个比key小（i>begin）
+        // 2.索引i的对应值应该就等于key (i=begin)
+        // 交换 i begin的值
+        swap(a, begin, i);
+        // 位置i就是key此时的位置
+        return i;
     }
 
     /**
@@ -67,5 +109,11 @@ public class Sorts {
             par(a, low, start - 1);
         if(end<high)
             par(a, end + 1, high);
+    }
+
+    private static void swap(int[] a, int i, int j) {
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
     }
 }
