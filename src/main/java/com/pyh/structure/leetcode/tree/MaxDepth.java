@@ -1,4 +1,6 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.tree;
+
+import com.pyh.structure.leetcode.tree.TreeNode;
 
 /**
  * 类MaxDepth的实现描述：

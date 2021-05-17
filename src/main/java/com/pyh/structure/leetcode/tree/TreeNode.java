@@ -1,4 +1,4 @@
-package com.pyh.structure.leetcode;
+package com.pyh.structure.leetcode.tree;
 
 /**
  * 类TreeNode的实现描述：二叉树节点结构

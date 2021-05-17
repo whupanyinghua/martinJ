@@ -1,7 +1,5 @@
 package com.pyh.structure.leetcode.tree;
 
-import com.pyh.structure.leetcode.TreeNode;
-
 import java.util.HashMap;
 import java.util.Map;
 

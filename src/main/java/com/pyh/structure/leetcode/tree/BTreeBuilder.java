@@ -1,7 +1,5 @@
 package com.pyh.structure.leetcode.tree;
 
-import com.pyh.structure.leetcode.TreeNode;
-
 /**
  * 类BTreeBuilder的实现描述：提供了根据两种遍历方式来构造二叉树的思路
  * 1.根据前序遍历、中序遍历构造二叉树

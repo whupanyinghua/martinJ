@@ -1,7 +1,5 @@
 package com.pyh.structure.leetcode.tree;
 
-import com.pyh.structure.leetcode.TreeNode;
-
 /**
  * 二叉树展开为链表
  * 给定一个二叉树，原地将它展开为一个单链表。

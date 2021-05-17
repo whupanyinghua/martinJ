@@ -1,7 +1,5 @@
 package com.pyh.structure.leetcode.tree;
 
-import com.pyh.structure.leetcode.TreeNode;
-
 /**
  * 类ConstructMaximumBinaryTree的实现描述：构造大堆，其实这个构造方式跟快排的思想很类似，在一个区间中先找到最大的元素，再递归处理左区间、右区间
  *

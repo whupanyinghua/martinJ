@@ -1,7 +1,5 @@
 package com.pyh.structure.leetcode.tree;
 
-import com.pyh.structure.leetcode.TreeNode;
-
 /**
  * 类InvertTree的实现描述：
  * 翻转一棵二叉树。
