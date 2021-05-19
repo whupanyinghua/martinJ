@@ -1,11 +1,11 @@
-package com.pyh.guavatest;
+package com.pyh.guava;
 
 import com.google.common.collect.Lists;
 
 import java.util.List;
 
 /**
- * 类GuavaListTest的实现描述：@TODO
+ * 类GuavaListTest的实现描述：GuavaListTest测试
  *
  * @author panyinghua 2020-12-23 17:58
  */
