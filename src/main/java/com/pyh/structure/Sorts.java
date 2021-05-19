@@ -50,7 +50,7 @@ public class Sorts {
                 swap(a, low, high);
             }
         }
-        //  注意在从左往右查找的时候，是找到笔key小的元素才互换，所以现在a[begin]还是key的值
+        //  注意在从左往右查找的时候，是找到比key小的元素才互换，所以现在a[begin]还是key的值
         // 此时索引i的对应值有两种情况
         // 1.索引i的对应值是一个比key小（i>begin）
         // 2.索引i的对应值应该就等于key (i=begin)
