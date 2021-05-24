@@ -75,10 +75,11 @@ public class MultiThreadPrintNumber {
 
         @Override
         public void run() {
+            countDownLatch.countDown();
             while(true) {
                 lock.lock();
                 try {
-                    countDownLatch.countDown();
+                    // countDownLatch.countDown(); countDownlatch要放到while true循环的外面
                     // 在当前线程关联的condition上等待
                     condition.await();
                     System.out.print(number);
