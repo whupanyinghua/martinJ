@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class KMP {
 
     public static void main(String[] args) {
-        String destStr = "abcdfgggabcdef";
+        String destStr = "ababac";
         char[] dest = destStr.toCharArray();
         System.out.println("dest   is " + String.valueOf(dest));
         System.out.println("next[] is " + Arrays.toString(getNext(dest)));

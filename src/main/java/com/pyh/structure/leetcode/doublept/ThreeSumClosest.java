@@ -1,6 +1,6 @@
 package com.pyh.structure.leetcode.doublept;
 
-import com.pyh.structure.Sorts;
+import com.pyh.structure.sort.Sorts;
 
 /**
  * 类ThreeSumClosest的实现描述：

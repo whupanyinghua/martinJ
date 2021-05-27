@@ -1,6 +1,6 @@
 package com.pyh.structure.leetcode;
 
-import com.pyh.structure.Sorts;
+import com.pyh.structure.sort.Sorts;
 
 import java.util.ArrayList;
 import java.util.HashMap;

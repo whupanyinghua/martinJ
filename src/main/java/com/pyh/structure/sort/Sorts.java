@@ -1,4 +1,4 @@
-package com.pyh.structure;
+package com.pyh.structure.sort;
 
 import java.util.Arrays;
 import java.util.Random;
