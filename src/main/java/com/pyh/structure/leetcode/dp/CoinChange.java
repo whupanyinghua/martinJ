@@ -101,7 +101,7 @@ public class CoinChange {
                     // 不选择或者选择第i种面额，取两者中的比较小的
                     dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - coins[i - 1]]+1);
                 } else {
-                    // j的值比第i中面额小，那么不能取第i中面额，此时结果继承自 dp[i-1][j]
+                    // j的值比第i种面额小，那么不能取第i种面额，此时结果继承自 dp[i-1][j]
                     dp[i][j] = dp[i-1][j];
                 }
             }

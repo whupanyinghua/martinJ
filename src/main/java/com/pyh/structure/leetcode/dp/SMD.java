@@ -18,7 +18,7 @@ public class SMD {
     }
 
     public static int smd(String s1, String s2) {
-        // dp[i][j] 表示的是 s1[...i-1] s2[...j-1]的最小编辑距离
+        // dp[i][j] 表示的是 s1[0...i-1] s2[0...j-1]的最小编辑距离
         // 思考如何从子问题推导出dp[i][j]
         // 当前字符 s1[i-1]  s2[j-1]字符，
         // 假设 s1[i-1]==s2[j-1] 那么当前无需任何操作，已经符合需求，操作次数=0，直接把i j往前移动即可 dp[i][j]=dp[i-1][j-1]

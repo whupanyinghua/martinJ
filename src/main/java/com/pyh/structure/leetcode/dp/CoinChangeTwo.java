@@ -2,6 +2,7 @@ package com.pyh.structure.leetcode.dp;
 
 /**
  * 类CoinChangeTwo的实现描述：
+ * 一个典型的完全背包问题，普通动态规划思路参见KnapsackProblem
  * 给定不同面额的硬币和一个总金额。写出函数来计算可以凑成总金额的硬币组合数。假设每一种面额的硬币有无限个。
  *
  *
