@@ -19,7 +19,7 @@ public class Sorts {
         // quickSort(null);
     }
 
-    private static void quickSortM(int[] a) {
+    public static void quickSortM(int[] a) {
         int len = a.length;
         quickSortInternal(a,0,len-1);
     }
@@ -50,11 +50,11 @@ public class Sorts {
                 swap(a, low, high);
             }
         }
-        //  注意在从左往右查找的时候，是找到比key小的元素才互换，所以现在a[begin]还是key的值
+        //  注意在从左往右查找的时候，是找到比key大的元素才互换，所以现在a[begin]还是key的值
         // 此时索引i的对应值有两种情况
-        // 1.索引i的对应值是一个比key小（i>begin）
-        // 2.索引i的对应值应该就等于key (i=begin)
-        // 交换 i begin的值
+        // 1.索引low的对应值是一个比key小（low>begin）
+        // 2.索引low的对应值应该就等于key (low=begin)
+        // 交换 low begin的值
         swap(a, begin, low);
         // 位置i就是key此时的位置
         return low;
