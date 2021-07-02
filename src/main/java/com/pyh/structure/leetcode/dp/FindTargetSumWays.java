@@ -26,6 +26,8 @@ package com.pyh.structure.leetcode.dp;
  * 链接：https://leetcode-cn.com/problems/target-sum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
+ * 可以参见 KnapsackProblem的背包问题变体：kp01_ziji方法
+ *
  * @author panyinghua 2020-7-23 14:33
  */
 public class FindTargetSumWays {
