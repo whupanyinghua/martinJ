@@ -36,6 +36,7 @@ public class FindTargetSumWays {
         int[] a = {7,9,3,8,0,2,4,8,3,9};
         int s = 1;
         System.out.println(new FindTargetSumWays().findTargetSumWays(a, s));
+        System.out.println(new FindTargetSumWays().findTargetSumWaysNew(a, s));
     }
 
 
@@ -94,6 +95,68 @@ public class FindTargetSumWays {
         }
 
         return dp[dpl];
+    }
+
+
+    /**
+     * 动态规划：
+     * 可以将问题转化为：
+     * 将数组分为A，B两块，A是+号的一组，B是-号的一组，sum是整个数组所有的数据和,那么有如下关系
+     * SA-SB=target
+     * SA+SB=sum
+     * 推导出2SA=target+sum，即SA=(target+sum)/2
+     * 那么可以将问题转化为：在数组中求一个集合A，满足sum(A)=(target+sum)/2，这个就是很明显的背包问题了。
+     * 动态规划解法：
+     * dp(i,j)=k表示前i个元素中组装出j容量的解法有k种，那么可以推导
+     * 分两种可能，
+     * 1，第i个元素不装进背包，那么有dp(i-1,j)
+     * 1，第i个元素装进背包，那么有dp(i-1,j-nums[i-1])，其中nums[i-1]就是第i个元素的值
+     * 得出
+     * dp(i,j) = dp(i-1,j) + dp(i-1,j-nums[i-1])
+     *
+     * 需要创建一个dp[nums.length+1][(target+sum)/2+1]的二维数组来保存状态
+     **/
+    public int findTargetSumWaysNew(int[] nums, int S) {
+        if(null == nums || nums.length==0) return 0;
+        if(1==nums.length) return nums[0]==Math.abs(S)?1:0;
+
+        int sum = 0;
+        for(int i=0;i<nums.length;i++) {
+            sum+=nums[i];
+        }
+
+        // 目标和（绝对值）大于数组总和，肯定没有满足条件的解
+        if(Math.abs(S)>sum) return 0;
+        // 如果S+sum没法整除2，意味着没有满足条件的解
+        if((S+sum)%2!=0) return 0;
+
+        int dpl = (S+sum)/2;
+        int[][] dp = new int[nums.length+1][dpl+1];
+        // 初始化dp数组 (这里要思考下1与2的顺序，一种反向思路可以参考，我们在优化dp[i][j]的思路中，需要优化掉的是i这个维度，保留
+        // 下来的j的维度，那么在初始化的时候，已经优化掉的维度i的初始化就没有了，剩下的维度中，
+        // 位置dp[j=0]=1表示的是使用i种元素装出容量0的方式只有1个，所以这里顺序就是2在1后边
+        //
+        // 1.从0个元素中组装出容量为j的装法只有0个，因为没有元素可以选择
+        for(int j=0;j<=dpl;j++) {
+            dp[0][j] = 0;
+        }
+        // 2.从i个元素中组装出容量为0的装法只有1个，那就是不选择任何一种元素
+        for(int i=0;i<=nums.length;i++) {
+            dp[i][0] = 1;
+        }
+
+        for(int i=1;i<nums.length+1;i++) {
+            for(int j=1;j<=dpl;j++) {
+                // dp(i,j) = dp(i-1,j) + dp(i-1,j-nums[i-1])
+                if(j>=nums[i-1]) {
+                    dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
+                } else {
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+
+        return dp[nums.length][dpl];
     }
 
 }
