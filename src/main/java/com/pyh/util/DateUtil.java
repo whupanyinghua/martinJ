@@ -34,5 +34,13 @@ public class DateUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date nn = simpleDateFormat.parse("2021-07-25 34:12:25");
+            System.out.println(nn);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

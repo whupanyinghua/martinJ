@@ -52,8 +52,11 @@ public class Tianhong {
         //List<Long> targetCouponIds = getTianhongCoupunList(startIndex, Long.MAX_VALUE, 5);
         //System.out.println("targetCouponIds:"+JSONObject.toJSONString(targetCouponIds));
 
+        long beginIndex = 1167536;
+        long endIndex = 1175961;
         // 第一步：获取当前时间已经发放的优惠券最大id
-        //System.out.println("maxCouponId is :" + getMaxCouponIdNow(1161646,1168658));
+        long maxIndex = getMaxCouponIdNow(beginIndex,endIndex);
+        System.out.println("maxCouponId is :" + maxIndex);
         // 第二步：根据获取到的最大maxid，以及上一次执行记录的id记为minid，座位区间[minid,maxid]来求解本次目标id
         /*List<Long> couponIdList = getTianhongCoupunList(1165646,1165656,10);
         Long[] couponIds = couponIdList.toArray(new Long[]{});
@@ -61,7 +64,7 @@ public class Tianhong {
         System.out.println("tianhongCouponIds is :" + JSON.toJSONString(couponIds));
         System.out.println("onlyTargetCouponId is :" + JSON.toJSONString(getOnlyTargetCoupons(couponIdList)));*/
         // 第二步的优化方法：
-        System.out.println("onlyTargetCouponId is :" + JSON.toJSONString(getTianhongCoupunListWithOnlyOneStore(1165831,1165861,10, targetStoreCode)));
+        System.out.println("onlyTargetCouponId is :" + JSON.toJSONString(getTianhongCoupunListWithOnlyOneStore(beginIndex,maxIndex,10, targetStoreCode)));
     }
 
     /**
